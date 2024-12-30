@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pencari Nilai Maksimum, Minimum, dan Rata-rata</title>
+    <style>
+        /* Tambahkan gaya CSS sesuai keinginan Anda */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        /* ... */
+    </style>
+</head>
+<body>
+    <h1>Pencari Nilai Maksimum, Minimum, dan Rata-rata</h1>
+    <textarea id="inputArray" rows="5" cols="30" placeholder="Masukkan data array assosiatif (contoh: {'nama1': 90, 'nama2': 85})"></textarea>
+    <button onclick="hitung()">Hitung</button>
+    <p id="hasil"></p>
+
+    <script>
+        function hitung() {
+            // Mendapatkan input dari textarea
+            const inputString = document.getElementById("inputArray").value;
+            // Mengubah string menjadi objek JSON
+            const arrayObj = JSON.parse(inputString);
+
+            // Inisialisasi variabel untuk menyimpan nilai
+            let nilaiMax = -Infinity;
+            let nilaiMin = Infinity;
+            let total = 0;
+            let jumlahData = 0;
+
+            // Iterasi melalui objek array
+            for (const key in arrayObj) {
+                const nilai = arrayObj[key];
+                nilaiMax = Math.max(nilaiMax, nilai);
+                nilaiMin = Math.min(nilaiMin, nilai);
+                total += nilai;
+                jumlahData++;
+            }
+
+            // Menghitung rata-rata
+            const rataRata = total / jumlahData;
+
+            // Menampilkan hasil
+            const hasilElement = document.getElementById("hasil");
+            hasilElement.innerHTML = `
+                <p>Nilai maksimum: ${nilaiMax}</p>
+                <p>Nilai minimum: ${nilaiMin}</p>
+                <p>Rata-rata: ${rataRata}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
